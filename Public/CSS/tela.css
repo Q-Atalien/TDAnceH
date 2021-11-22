@@ -104,7 +104,7 @@ li.dropdown {
 /* Article */
 .article {
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   background-color: #8aa4b3;
   display: flex;
   justify-content: center;
@@ -170,7 +170,7 @@ li.dropdown {
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
   background-image: url("https://images.pexels.com/photos/175658/pexels-photo-175658.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
   background-size: cover;
@@ -181,12 +181,12 @@ li.dropdown {
 .divFormCadastro {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  border-radius: 45px;
+  /* border-radius: 45px; */
   border: 5px double #987a7f;
-  width: 50%;
-  height: 75%;
+  width: 40%;
+  height: 100%;
   color: #a3443c;
   background-color: #987a7fb4;
 }
@@ -197,10 +197,10 @@ li.dropdown {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 45px;
+  /* border-radius: 45px; */
   border: 5px double #987a7f;
   width: 30%;
-  height: 60%;
+  height: 100%;
   color: #a3443c;
   background-color: #987a7fb4;
 }
@@ -215,6 +215,10 @@ li.dropdown {
   width: 75%;
   float: left;
   margin: 0px 10px;
+}
+
+.inputForm::placeholder {
+  color: #a3453c96;
 }
 
 .btnForm {
