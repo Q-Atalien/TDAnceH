@@ -62,7 +62,7 @@
           <h3>Email : <input id="email" placeholder="Atalien@TDAnceH.com.br" class="inputForm"></h3>
           <h3>Senha : <input id="senha" placeholder="********" class="inputForm" type="password"></h3>
           <h3>Confirmação De Senha : <input id="confiSenha" placeholder="********" type="password" class="inputForm"></h3>
-          <button onclick="logar()" class="btnForm">Entrar</button>
+          <button onclick="cadastrar()" class="btnForm">Entrar</button>
       </div>
      </div>
     </div>
@@ -87,7 +87,7 @@
     }
 
     function cadastrar() {
-        aguardar();
+        // aguardar();
 
         var nomeVar = nomeUsuario.value;
         var emailVar = email.value;
@@ -110,7 +110,7 @@
             if (senhaConfirmada == "") {
                 console.log('confirmacaoSenha está em branco')
             }
-            finalizarAguardar();
+            // finalizarAguardar();
             return false;
         }
 
@@ -122,7 +122,7 @@
 
         if (senhaVar != senhaConfirmada) {
             window.alert("As senhas inseridas devem ser iguais para prosseguir!");
-            finalizarAguardar();
+            // finalizarAguardar();
             return false;
         }
 
@@ -143,14 +143,14 @@
             if (resposta.ok) {
                 window.alert("Cadastro realizado com sucesso!");
                 window.location = "login.html";
-                limparFormulario();
-                finalizarAguardar();
+                // limparFormulario();
+                // finalizarAguardar();
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
+            // finalizarAguardar();
         });
     }
 
