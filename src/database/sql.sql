@@ -28,29 +28,32 @@ CREATE TABLE medida (
 
 
 /* para workbench - local - desenvolvimento */
-CREATE DATABASE acquatec;
+CREATE DATABASE TDAnceH;
 
-USE acquatec;
+USE TDAnceH;
 
 CREATE TABLE usuario (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	nome VARCHAR(50),
 	email VARCHAR(50),
-	senha VARCHAR(50)
+	senha VARCHAR(50),
+	sexo char(1),
+	check (sexo = 'F' or sexo = 'M')
 );
 
-CREATE TABLE aviso (
+CREATE TABLE forum (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	titulo VARCHAR(100),
-    descricao VARCHAR(150),
+    descricao TEXT,
 	fk_usuario INT,
 	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
 ); 
 
-CREATE TABLE medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	temperatura DECIMAL,
-	umidade DECIMAL,
+CREATE TABLE afazer (
+	idTarefa INT PRIMARY KEY AUTO_INCREMENT,
+	descricao TEXT,
 	momento DATETIME,
-	fk_aquario INT
-);
+	concluido BIT,
+	fk_usuario INT,
+	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+	);
