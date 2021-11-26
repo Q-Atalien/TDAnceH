@@ -37,7 +37,6 @@ CREATE TABLE usuario (
 	nome VARCHAR(50),
 	email VARCHAR(50),
 	senha VARCHAR(50),
-	sexo char(1),
 	check (sexo = 'F' or sexo = 'M')
 );
 

@@ -12,3 +12,8 @@ router.get("/tempo-real/:idAquario", function (req, res) {
 })
 
 module.exports = router;
+
+
+router.post("/newElement", function (req, res) {
+    usuarioController.cadastrar(req, res);
+})

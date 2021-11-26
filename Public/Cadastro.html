@@ -62,11 +62,6 @@
           <h3>Email : <input id="email" placeholder="Atalien@TDAnceH.com.br" class="inputForm"></h3>
           <h3>Senha : <input id="senha" placeholder="********" class="inputForm" type="password"></h3>
           <h3>Confirmação De Senha : <input id="confiSenha" placeholder="********" type="password" class="inputForm"></h3>
-          <select id="Sexo">
-              <option value="0">--Selecione--</option>
-              <option value="F">Feminino</option>
-              <option value="M">Masculino</option>
-          </select>
           <button onclick="cadastrar()" class="btnForm">Entrar</button>
       </div>
      </div>
@@ -98,10 +93,9 @@
         var emailVar = email.value;
         var senhaVar = senha.value;
         var senhaConfirmada = confiSenha.value;
-        var sexoVar = sexoUsuario.value;
 
         // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
-        if (nomeVar == "" || emailVar == "" || senhaVar == "" || senhaConfirmada == "" || sexoVar == "0") {
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || senhaConfirmada == "") {
 
             window.alert("Preencha todos os campos para prosseguir!");
             if (nomeVar == "") {
@@ -116,7 +110,6 @@
             if (senhaConfirmada == "") {
                 console.log('confirmacaoSenha está em branco')
             }
-            if(sexoVar == "0")
             // finalizarAguardar();
             return false;
         }
@@ -142,7 +135,6 @@
                 nome: nomeVar,
                 email: emailVar,
                 senha: senhaVar,
-                sexo: sexoVar,
             })
         }).then(function (resposta) {
 
@@ -150,7 +142,7 @@
 
             if (resposta.ok) {
                 window.alert("Cadastro realizado com sucesso!");
-                window.location = "login.html";
+                window.location = "Login.html";
                 // limparFormulario();
                 // finalizarAguardar();
             } else {
