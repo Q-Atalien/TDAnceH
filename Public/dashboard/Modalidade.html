@@ -1,0 +1,232 @@
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="dashboards.css" />
+    <title>Modalidade</title>
+  </head>
+  <body>
+    <div class="janela">
+      <div class="containerNavBar">
+        <div class="hello">
+          <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+        </div>
+
+        <div class="navegacaoLateral">
+          <a href="Modalidade.html">Modalidades</a>
+          <a href="Fórum.html">Fórum</a>
+          <a href="ToDo.html">To Do</a>
+          <a href="Análise De Afazeres.html">Análise De Afazeres</a>
+          <a href="sair">Sair</a>
+        </div>
+      </div>
+
+      <div class="conteudo">
+        <div class="container">
+          <h2 class="h2p">Modalidades</h2>
+
+          <button class="accordion">Danças Urbanas</button>
+          <div class="panel">
+            <p>
+              Danças Urbanas é um estilo termo danças urbanas surge para
+              designar várias danças que nascem e se desenvolvem nos contextos
+              urbanos, especialmente nas periferias dessa forma você aprende se
+              expor, tomar atitude e tar presença, mostrando sua essência.
+            </p>
+            <!-- Trigger/Open The Modal -->
+            <button id="dancasUrbanas">Open Modal</button>
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+              <!-- Modal content -->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <span class="close">&times;</span>
+                  <h2>Modal Header</h2>
+                </div>
+                <div class="modal-body">
+                  <p>Some text in the Modal Body</p>
+                  <p>Some other text...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="accordion">Comtemporâneo</button>
+          <div class="panel">
+            <p>
+              Comtemporâneo tem a intenção é trazer movimentos que consigam
+              transmitir sentimentos e questionamentos, ao mesmo tempo em que
+              aproximam a dança da vida cotidiana. Traz como marca a
+              investigação gestual e a experimentação, não possuindo técnicas
+              próprias e podendo mesclar outras linguagens das artes, como o
+              teatro e a performance. Sendo assim, de modo que se possa
+              experimentar e improvisar.
+            </p>
+            <!-- Trigger/Open The Modal -->
+            <button id="comtemporaneo">Open Modal</button>
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+              <!-- Modal content -->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <span class="close">&times;</span>
+                  <h2>Modal Header</h2>
+                </div>
+                <div class="modal-body">
+                  <p>Some text in the Modal Body</p>
+                  <p>Some other text...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="accordion">Femme</button>
+          <div class="panel">
+            <p>
+              Femme auxilia a autoestima, desinibição, confiança e sensualidade,
+              além de trazer diversos benefícios para o corpo, como definição da
+              musculatura inferior, equilíbrio e agilidade. É uma modalidade que
+              mescla técnicas do jazz com elementos das danças urbanas e se
+              caracteriza pelo uso do salto alto. Tem como principal
+              característica o trabalho de linhas, ângulos e precisão.
+            </p>
+            <!-- Trigger/Open The Modal -->
+            <button id="femme">Open Modal</button>
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+              <!-- Modal content -->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <span class="close">&times;</span>
+                  <h2>Modal Header</h2>
+                </div>
+                <div class="modal-body">
+                  <p>Some text in the Modal Body</p>
+                  <p>Some other text...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="accordion">Ballet</button>
+          <div class="panel">
+            <p>
+              Balé é a dança mais técnica e formal, ela se apresenta como
+              Educação Física quando se basta na manifestação diversificada de
+              movimentos corporais e de sua execução. Já como objeto do campo
+              das Artes, ela precisa necessariamente incluir a emoção, que se
+              apresenta por meio das expressões corporais para quem dança, e por
+              meio da surpresa perante os movimentos dos bailarinos, por parte
+              de quem assiste.
+              <!-- Trigger/Open The Modal -->
+              <button id="ballet">Open Modal</button>
+
+              <!-- The Modal -->
+            </p>
+
+            <div id="myModal" class="modal">
+              <!-- Modal content -->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <span class="close">&times;</span>
+                  <h2>Modal Header</h2>
+                </div>
+                <div class="modal-body">
+                  <p>Some text in the Modal Body</p>
+                  <p>Some other text...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="accordion">Jazz Funk</button>
+          <div class="panel">
+            <p>
+              O jazz funk é uma dança cheia de arte e atuação, com proposta de
+              unificar os movimentosdetalhados e cheios de atitudedas das danças
+              urbanas com a delicadeza e sensualidade do jazz, que nasceu. Uma
+              modalidade que ajuda adeptos em coreografias de presença de palco.
+            </p>
+            <!-- Trigger/Open The Modal -->
+            <button id="jazzFunk">Open Modal</button>
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+              <!-- Modal content -->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <span class="close">&times;</span>
+                  <h2>Modal Header</h2>
+                </div>
+                <div class="modal-body">
+                  <p>Some text in the Modal Body</p>
+                  <p>Some other text...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  var acc = document.getElementsByClassName("accordion");
+  var i;
+
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
+  }
+
+  // Get the modal
+  var modal = document.getElementById("myModal");
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtn");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks the button, open the modal
+  dancasUrbanas.onclick = function () {
+    modal.style.display = "block";
+  };
+
+  ballet.onclick = function () {
+    modal.style.display = "block";
+  };
+  jazzFunk.onclick = function () {
+    modal.style.display = "block";
+  };
+  comtemporaneo.onclick = function () {
+    modal.style.display = "block";
+  };
+
+  femme.onclick = function () {
+    modal.style.display = "block";
+  };
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+</script>

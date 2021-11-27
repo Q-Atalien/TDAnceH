@@ -1,0 +1,89 @@
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="dashboards.css" />
+    <title>Analise Afazeres</title>
+  </head>
+  <body>
+    <div class="janela">
+      <div class="containerNavBar">
+        <div class="hello">
+          <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+        </div>
+
+        <div class="navegacaoLateral">
+          <a href="Modalidade.html">Modalidades</a>
+          <a href="Fórum.html">Fórum</a>
+          <a href="ToDo.html">To Do</a>
+          <a href="Análise De Afazeres.html">Análise De Afazeres</a>
+          <a href="sair">Sair</a>
+        </div>
+      </div>
+
+      <div class="conteudo">
+        <div class="container"></div>
+        <canvas id="myChart" style="width: 100%; height: 100%"></canvas>
+        <div class="graph"></div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  const mixedChart = new Chart(ctx, {
+    data: {
+      datasets: [
+        {
+          type: "bar",
+          label: "Bar Dataset",
+          data: [10, 20, 30, 40],
+        },
+        {
+          type: "line",
+          label: "Line Dataset",
+          data: [50, 50, 50, 50],
+        },
+      ],
+      labels: ["January", "February", "March", "April"],
+    },
+    options: { maintainAspectRatio: false },
+  });
+
+  const config = {
+    type: "scatter",
+    data: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  };
+
+  const mixedChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      datasets: [
+        {
+          label: "Bar Dataset",
+          data: [10, 20, 30, 40],
+          // this dataset is drawn below
+          order: 2,
+        },
+        {
+          label: "Line Dataset",
+          data: [10, 10, 10, 10],
+          type: "line",
+          // this dataset is drawn on top
+          order: 1,
+        },
+      ],
+      labels: ["January", "February", "March", "April"],
+    },
+    options: options,
+  });
+
+  var myChartLine = new Chart(document.getElementById("myChart"), config);
+</script>

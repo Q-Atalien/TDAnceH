@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="dashboards.css" />
+    <title>To Do</title>
+  </head>
+  <body>
+    <div class="janela">
+      <div class="containerNavBar">
+        <div class="hello">
+          <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+        </div>
+
+        <div class="navegacaoLateral">
+          <a href="Modalidade.html">Modalidades</a>
+          <a href="Fórum.html">Fórum</a>
+          <a href="ToDo.html">To Do</a>
+          <a href="Análise De Afazeres.html">Análise De Afazeres</a>
+          <a href="sair">Sair</a>
+        </div>
+      </div>
+
+      <div class="conteudo">
+        <div class="container">
+          <div id="myDIV" class="header">
+            <h2 style="margin: 5px">My To Do List</h2>
+            <input type="text" id="tarefaAdicionada" placeholder="Title..." />
+            <span onclick="newElement()" class="addBtn">Add</span>
+          </div>
+
+          <ul id="myUL"></ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  var myNodelist = document.getElementsByTagName("LI");
+  var i;
+  for (i = 0; i < myNodelist.length; i++) {
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    myNodelist[i].appendChild(span);
+  }
+
+  // Click on a close button to hide the current list item
+  var close = document.getElementsByClassName("close");
+  var i;
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function () {
+      var div = this.parentElement;
+      div.style.display = "none";
+    };
+  }
+
+  // Add a "checked" symbol when clicking on a list item
+  var list = document.querySelector("ul");
+  list.addEventListener("click", function (ev) {
+    if (ev.target.tagName === "LI") {
+      ev.target.classList.toggle("checked", true);
+      var checkTarefa = true;
+    }
+
+    var date = new Date();
+
+    dateFormat = date.getFullYear + "-" + date.getMonth + "-" + date.getDay;
+
+    fetch("/toDo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        concluido: false,
+        momento: dateFormat,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!");
+
+        if (resposta.ok) {
+          console.log(resposta);
+
+          resposta.json().then((json) => {
+            console.log(json);
+            console.log(JSON.stringify(json));
+          });
+        } else {
+          // tentar entender
+          console.log("Houve um erro ao tentar realizar adicionar tarefa");
+
+          resposta.text().then((texto) => {
+            console.error(texto);
+            finalizarAguardar(texto);
+          });
+        }
+      })
+      .catch(function (erro) {
+        console.log(erro);
+      });
+
+    return false;
+  });
+
+  // Create a new list item when clicking on the "Add" button
+  function newElement() {
+    var li = document.createElement("li");
+    var inputValue = document.getElementById("tarefaAdicionada").value;
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    console.log("USU: ", idUsuario)
+    var t = document.createTextNode(inputValue);
+    li.appendChild(t);
+    if (inputValue === "") {
+      alert("You must write something!");
+    } else {
+      document.getElementById("myUL").appendChild(li);
+    }
+    document.getElementById("tarefaAdicionada").value = "";
+
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    li.appendChild(span);
+
+    for (i = 0; i < close.length; i++) {
+      close[i].onclick = function () {
+        var div = this.parentElement;
+        div.style.display = "none";
+      };
+    }
+
+    fetch("/usuarios/newElement", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        descricao: inputValue,
+        concluido: 0,
+        idUsuario: idUsuario,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!");
+
+        if (resposta.ok) {
+          console.log(resposta);
+
+          resposta.json().then((json) => {
+            console.log(json);
+            console.log(JSON.stringify(json));
+          });
+        } else {
+          // tentar entender
+          console.log("Houve um erro ao tentar realizar adicionar tarefa");
+
+          resposta.text().then((texto) => {
+            console.error(texto);
+            // finalizarAguardar(texto);
+          });
+        }
+      })
+      .catch(function (erro) {
+        console.log(erro);
+      });
+
+    return false;
+  }
+</script>

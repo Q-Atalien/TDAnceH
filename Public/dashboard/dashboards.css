@@ -1,239 +1,285 @@
-/* pagina mural */
+* {
+  box-sizing: border-box;
+}
 
-*,
+html,
 body {
-  font-family: "Exo 2", sans-serif;
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+  height: 100%;
 }
 
-.dash-right .avisos {
-  width: 100%;
-  /* border: 3px solid pink; */
-  color: rgb(216, 216, 216);
-  font-family: "Exo 2", sans-serif;
+.janela {
+  height: 100%;
+  display: flex;
 }
 
-.dash-right .avisos .container {
+.containerNavBar {
+  height: 100%;
+  width: 30%;
+  background-color: #a3443c;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  left: 0;
+}
+
+.navegacaoLateral {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
-.dash-right .avisos .container .div-form {
-  width: 100%;
+.navegacaoLateral a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #c8b7c9;
+  display: block;
 }
 
-.dash-right .avisos .container .div-form #form_postagem {
-  width: 100%;
+.navegacaoLateral a:hover {
+  color: #987a7f;
 }
 
-.dash-right .avisos .div-form label {
-  width: 100%;
+.conteudo {
+  width: 70%;
+  background-color: #987a7f;
+  height: 100%;
+  margin-left: 395px;
 }
 
-.dash-right .avisos .div-form input {
-  width: 100%;
-  border-radius: 5px;
+.h2p{
+  padding: 10px;
 }
 
-.dash-right .avisos .div-form textarea {
-  width: 100%;
-  /* color: #E6005A; */
-  border: 3px solid #e6005a;
-  background-color: white;
-  border-radius: 5px;
+/* teste */
+ul {
+  margin: 0;
+  padding: 0;
 }
 
-.dash-right .avisos .div-form button {
+/* Style the list items */
+ul li {
   cursor: pointer;
-  font-family: "Exo 2", sans-serif;
-  border: 0;
-  border-radius: 5px;
-  font-weight: 600;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #eee;
   font-size: 18px;
-  padding: 10px 15px;
-  color: white;
-  background-color: #e6005a;
-  width: 120px;
+  transition: 0.2s;
+
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.publicacao-btn-editar {
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(odd) {
+  background: #b6c5bc;
+}
+
+/* Darker background-color on hover */
+ul li:hover {
+  background: #98cead;
+}
+
+/* When clicked on, add a background color and strike out text */
+ul li.checked {
+  background: #c8b7c9;
+  color: #a3443c;
+  text-decoration: line-through;
+}
+
+/* Add a "checked" mark when clicked on */
+ul li.checked::before {
+  content: "";
+  position: absolute;
+  border-color: #a3443c;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+/* Style the close button */
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.close:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Style the header */
+.header {
+  background-color: #8aa4b3;
+  padding: 30px 40px;
+  color: #a3443c;
+  text-align: center;
+}
+
+/* Clear floats after the header */
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the input */
+input {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+/* Style the "Add" button */
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #c8b7c9;
+  color: #fff;
+  float: left;
+  text-align: center;
+  font-size: 16px;
   cursor: pointer;
-  font-family: "Exo 2", sans-serif;
-  border: 0;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 5px 8px;
-  color: white;
-  background-color: #e6005a;
-  width: 80px;
+  transition: 0.3s;
+  border-radius: 0;
 }
 
-.publicacao {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: stretch;
-  flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-  border-bottom: 3px solid #e6005a;
-  padding: 20px;
+.addBtn:hover {
+  background-color: #8aa4b3;
 }
 
-.publicacao > *:not(:last-child) {
-  padding: 0 0 10px 0;
-}
-
-.div-results {
+/* teste2 */
+.accordion {
+  background-color: #8aa4b3;
+  color: #a3443c;
+  cursor: pointer;
+  padding: 18px;
   width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
 }
 
-.div-results .feed-container {
-  background-color: #212124;
-  border-radius: 5px;
-  margin-bottom: 80px;
+.active,
+.accordion:hover {
+  background-color: #98cead;
 }
 
-.div-buttons {
-  display: flex;
-  justify-content: flex-end;
+.accordion:after {
+  content: "\002B";
+  color: #a3443c;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
 }
 
-.div-buttons > * {
-  margin-left: 30px;
+.active:after {
+  content: "\2212";
 }
 
-/* pagina graficos */
+.panel {
+  padding: 0 18px;
+  background-color: #c8b7c9;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
 
-.dash-header {
-  background-color: #212124;
+/* test */
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #a3443c; /* Fallback color */
+  background-color: #a3453c71; /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #b6c5bc;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #a3443c;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: #c8b7c9;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #c8b7c9;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #a3443c;
+  color: #c8b7c9;
+}
+
+.modal-body {padding: 2px 16px;}
+
+/* chart js */
+.graph {
+  background-color: #eaeaea;
+  display: inline-block;
+  width: 45%;
+  height: 250px;
+  margin: 10px;
+  padding: 5px;
 }
 
 .dash {
-  width: 75%;
-  position: relative;
-  top: 0;
-  left: 25%;
-  background-color: #161618;
-
-  /* width: 75%;
-    display: flex;
-    background-color: #161618;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;*/
-  height: 100vh;
-}
-
-.regua {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-  margin-top: 30px;
-}
-
-.perigo-frio {
-  background-color: #5c6bc0;
-}
-
-.perigo-quente {
-  background-color: #ff7043;
-}
-
-.alerta-frio {
-  background-color: #42a5f5;
-}
-
-.alerta-quente {
-  background-color: #ffee58;
-}
-
-.ideal {
-  background-color: #9ccc65;
-}
-
-.item-regua {
-  padding: 5px;
-  width: 15%;
-  margin: 5px;
-  text-align: center;
-  padding-top: 15px;
-}
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  height: 450px;
-  width: 100%;
-  align-items: center;
-  color: white;
-}
-
-.card {
-  margin: 2%;
-  width: 40%;
-  flex-wrap: wrap;
-  display: flex;
-  text-align: center;
-  height: 180px;
-  justify-content: right;
-  background-color: #212124;
-  font-size: 20px;
-}
-
-.card p {
-  margin: 0;
-  font-size: 50px;
-  font-weight: lighter;
-  text-align: left;
-}
-
-.cards h1 {
-  font-size: 22px;
-  width: 100%;
-  border-bottom: solid white 1px;
-  text-align: left;
-  font-weight: lighter;
-  margin: 20px;
-}
-
-.temperatura,
-.umidade {
-  margin: 5px;
-  margin-left: 20px;
-  width: 75%;
-}
-
-.cor-alerta {
-  width: 13%;
-  height: 30%;
-  border-radius: 50px;
-  margin-top: 6%;
-  /* background-color: #c7c7c7; */
-}
-
-.btns-dash {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 30px;
-}
-
-.graph {
-  width: 80%;
   margin: auto;
-  padding-top: 45px;
-}
-
-.btn-chart {
-  font-family: "Exo 2", sans-serif;
-  border: 0;
-  font-weight: 600;
-  font-size: 18px;
-  padding: 10px 15px;
-  color: white;
-  background-color: #e6005a;
-  margin: 5px;
+  text-align: center;
 }

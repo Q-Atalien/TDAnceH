@@ -52,7 +52,7 @@ CREATE TABLE afazer (
 	idTarefa INT PRIMARY KEY AUTO_INCREMENT,
 	descricao TEXT,
 	momento DATETIME,
-	concluido BIT,
+	concluido TINYINT,
 	fk_usuario INT,
 	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
 	);

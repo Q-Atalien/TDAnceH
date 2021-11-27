@@ -90,9 +90,42 @@ function cadastrar(req, res) {
   }
 }
 
+function newElement(req, res) {
+  var descricao = req.body.descricao;
+  var concluido = req.body.concluido;
+  var fkUsuario = req.body.idUsuario;
+
+  console.log(req.body);
+
+  console.log(descricao);
+  console.log(concluido);
+  console.log(fkUsuario);
+
+  if (descricao == undefined) {
+    res.status(400).send("Sua descricao está undefined!");
+  } else if (concluido == undefined) {
+    res.status(400).send("Seu checked está undefined!");
+  } else {
+    usuarioModel
+      .newElement(descricao, concluido, fkUsuario)
+      .then(function (resultado) {
+        res.json(resultado);
+      })
+      .catch(function (erro) {
+        console.log(erro);
+        console.log(
+          "\nHouve um erro ao realizar a tarefa! Erro: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      });
+  }
+}
+
 module.exports = {
   entrar,
   cadastrar,
   listar,
   testar,
+  newElement,
 };
