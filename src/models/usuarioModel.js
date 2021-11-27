@@ -51,11 +51,25 @@ function newElement(descricao, concluido, fkUsuario) {
   return database.executar(instrucao);
 }
 
-function listarTodos(fkUsuario){
-  console.log("MOSTRANDO INFORMAÇÕES DA TABELA")
-var instrucao = `SELECT * FROM afazer WHERE fk_usuario = '${fkUsuario}';`;
-console.log("Executando a instrução SQL: \n" + instrucao);
-return database.executar(instrucao);
+function listarTodos(fkUsuario) {
+  console.log("MOSTRANDO INFORMAÇÕES DA TABELA");
+  var instrucao = `SELECT * FROM afazer WHERE fk_usuario = '${fkUsuario}';`;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
+}
+
+function apagarTarefa(idTarefa) {
+  console.log("APAGAR TAREFA ESPECIFICA");
+  var instrucao = `DELETE FROM afazer WHERE idTarefa = '${idTarefa}';`;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
+}
+
+function check(idTarefa, concluido) {
+  console.log("MARCANDO CONCLUIDO DA TAREFA");
+  var instrucao = `UPDATE afazer SET concluido = ${concluido}, momento = now() WHERE idTarefa = '${idTarefa}';`;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
 }
 
 module.exports = {
@@ -64,4 +78,6 @@ module.exports = {
   listar,
   newElement,
   listarTodos,
+  apagarTarefa,
+  check,
 };

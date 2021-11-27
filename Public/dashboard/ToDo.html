@@ -39,6 +39,8 @@
 </html>
 
 <script>
+  var idUsuario = sessionStorage.ID_USUARIO;
+
   function mostreTarefas() {
     var idUsuario = sessionStorage.ID_USUARIO;
 
@@ -57,9 +59,16 @@
           console.log(listaAfazer);
           for (var i = 0; i < listaAfazer.length; i++) {
             var li = document.createElement("li");
+            li.setAttribute("id", listaAfazer[i].idTarefa);
             var t = document.createTextNode(listaAfazer[i].descricao);
             li.appendChild(t);
-            document.getElementById("myUL").appendChild(li);
+
+            if (listaAfazer[i].concluido == 0) {
+              document.getElementById("myUL").appendChild(li);
+            } else {
+              li.setAttribute("class", "checked");
+              document.getElementById("myUL").appendChild(li);
+            }
           }
 
           var myNodelist = document.getElementsByTagName("li");
@@ -74,8 +83,27 @@
           var close = document.getElementsByClassName("close");
           for (var i = 0; i < close.length; i++) {
             close[i].onclick = function () {
-              var div = this.parentElement;
-              div.style.display = "none";
+              var element = this.parentElement;
+              console.log(element.id);
+
+              fetch("/usuarios/apagarTarefa", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  idTarefa: element.id,
+                }),
+              })
+                .then(function (resposta) {
+                  if (resposta.ok) {
+                    console.log(resposta);
+                    element.style.display = `none`;
+                  }
+                })
+                .catch(function (erro) {
+                  console.log(erro);
+                });
             };
           }
         });
@@ -87,81 +115,34 @@
 
   // Add a "checked" symbol when clicking on a list item
   var list = document.querySelector("ul");
-  list.addEventListener("click", function (ev) {
-    if (ev.target.tagName === "LI") {
-      ev.target.classList.toggle("checked", true);
-      var checkTarefa = true;
-    }
+  list.addEventListener("click", function (event) {
+    if (event.target.tagName === "LI") {
+      var idTarefa = event.target.id;
 
-    var date = new Date();
-
-    dateFormat = date.getFullYear + "-" + date.getMonth + "-" + date.getDay;
-
-    fetch("/toDo", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        concluido: false,
-        momento: dateFormat,
-      }),
-    })
-      .then(function (resposta) {
-        console.log("ESTOU NO THEN DO entrar()!");
-
-        if (resposta.ok) {
-          console.log(resposta);
-
-          resposta.json().then((json) => {
-            console.log(json);
-            console.log(JSON.stringify(json));
-          });
-        } else {
-          // tentar entender
-          console.log("Houve um erro ao tentar realizar adicionar tarefa");
-
-          resposta.text().then((texto) => {
-            console.error(texto);
-            finalizarAguardar(texto);
-          });
-        }
+      fetch("/usuarios/check", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          idTarefa: idTarefa,
+          concluido: 1,
+        }),
       })
-      .catch(function (erro) {
-        console.log(erro);
-      });
-
-    return false;
+        .then(function (resposta) {
+          if (resposta.ok) {
+            event.target.classList.toggle("checked", true);
+          }
+        })
+        .catch(function (erro) {
+          console.log(erro);
+        });
+    }
   });
 
-  // Create a new list item when clicking on the "Add" button
   function newElement() {
-    var li = document.createElement("li");
     var inputValue = document.getElementById("tarefaAdicionada").value;
     var idUsuario = sessionStorage.ID_USUARIO;
-
-    console.log("USU: ", idUsuario);
-    var t = document.createTextNode(inputValue);
-    li.appendChild(t);
-    if (inputValue === "") {
-      alert("You must write something!");
-    } else {
-      document.getElementById("myUL").appendChild(li);
-    }
-    document.getElementById("tarefaAdicionada").value = "";
-
-    var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.appendChild(txt);
-    li.appendChild(span);
-
-    for (i = 0; i < close.length; i++) {
-      close[i].onclick = function () {
-        var div = this.parentElement;
-        div.style.display = "none";
-      };
-    }
 
     fetch("/usuarios/newElement", {
       method: "POST",
@@ -183,9 +164,9 @@
           resposta.json().then((json) => {
             console.log(json);
             console.log(JSON.stringify(json));
+            window.location.reload();
           });
         } else {
-          // tentar entender
           console.log("Houve um erro ao tentar realizar adicionar tarefa");
 
           resposta.text().then((texto) => {
@@ -197,7 +178,5 @@
       .catch(function (erro) {
         console.log(erro);
       });
-
-    return false;
   }
 </script>

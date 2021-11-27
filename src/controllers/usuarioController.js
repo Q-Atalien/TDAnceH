@@ -116,16 +116,47 @@ function newElement(req, res) {
   }
 }
 
-function listarTodos(req, res){
+function listarTodos(req, res) {
   var fkUsuario = req.body.idUsuario;
 
-  usuarioModel.listarTodos(fkUsuario).then(function(resultado){
-    res.json(resultado);
-  })
-  .catch(function(erro){
-    console.log(erro);
-    res.status(500).json(erro.sqlMessage);
-  })
+  usuarioModel
+    .listarTodos(fkUsuario)
+    .then(function (resultado) {
+      res.json(resultado);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function apagarTarefa(req, res) {
+  var idTarefa = req.body.idTarefa;
+
+  usuarioModel
+    .apagarTarefa(idTarefa)
+    .then(function (resultado) {
+      res.json(resultado);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function check(req, res) {
+  var idTarefa = req.body.idTarefa;
+  var concluido = req.body.concluido;
+
+  usuarioModel
+    .check(idTarefa, concluido)
+    .then(function (resultado) {
+      res.json(resultado);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 module.exports = {
@@ -135,4 +166,6 @@ module.exports = {
   testar,
   newElement,
   listarTodos,
+  apagarTarefa,
+  check,
 };
