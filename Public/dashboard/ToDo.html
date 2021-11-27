@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="dashboards.css" />
     <title>To Do</title>
   </head>
-  <body>
+  <body onload="mostreTarefas()">
     <div class="janela">
       <div class="containerNavBar">
         <div class="hello">
@@ -39,24 +39,50 @@
 </html>
 
 <script>
-  var myNodelist = document.getElementsByTagName("LI");
-  var i;
-  for (i = 0; i < myNodelist.length; i++) {
-    var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.appendChild(txt);
-    myNodelist[i].appendChild(span);
-  }
+  function mostreTarefas() {
+    var idUsuario = sessionStorage.ID_USUARIO;
 
-  // Click on a close button to hide the current list item
-  var close = document.getElementsByClassName("close");
-  var i;
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function () {
-      var div = this.parentElement;
-      div.style.display = "none";
-    };
+    fetch("/usuarios/listarTodos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idUsuario: idUsuario,
+      }),
+    })
+      .then(function (resposta) {
+        resposta.json().then((json) => {
+          var listaAfazer = json;
+          console.log(listaAfazer);
+          for (var i = 0; i < listaAfazer.length; i++) {
+            var li = document.createElement("li");
+            var t = document.createTextNode(listaAfazer[i].descricao);
+            li.appendChild(t);
+            document.getElementById("myUL").appendChild(li);
+          }
+
+          var myNodelist = document.getElementsByTagName("li");
+          for (var i = 0; i < myNodelist.length; i++) {
+            var span = document.createElement("SPAN");
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close";
+            span.appendChild(txt);
+            myNodelist[i].appendChild(span);
+          }
+
+          var close = document.getElementsByClassName("close");
+          for (var i = 0; i < close.length; i++) {
+            close[i].onclick = function () {
+              var div = this.parentElement;
+              div.style.display = "none";
+            };
+          }
+        });
+      })
+      .catch(function (erro) {
+        console.log("tatu2", erro);
+      });
   }
 
   // Add a "checked" symbol when clicking on a list item
@@ -114,7 +140,7 @@
     var inputValue = document.getElementById("tarefaAdicionada").value;
     var idUsuario = sessionStorage.ID_USUARIO;
 
-    console.log("USU: ", idUsuario)
+    console.log("USU: ", idUsuario);
     var t = document.createTextNode(inputValue);
     li.appendChild(t);
     if (inputValue === "") {

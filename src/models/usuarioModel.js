@@ -51,9 +51,17 @@ function newElement(descricao, concluido, fkUsuario) {
   return database.executar(instrucao);
 }
 
+function listarTodos(fkUsuario){
+  console.log("MOSTRANDO INFORMAÇÕES DA TABELA")
+var instrucao = `SELECT * FROM afazer WHERE fk_usuario = '${fkUsuario}';`;
+console.log("Executando a instrução SQL: \n" + instrucao);
+return database.executar(instrucao);
+}
+
 module.exports = {
   entrar,
   cadastrar,
   listar,
   newElement,
+  listarTodos,
 };

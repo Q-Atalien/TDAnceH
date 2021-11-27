@@ -24,4 +24,8 @@ router.post("/newElement", function (req, res) {
     usuarioController.newElement(req, res);
 });
 
+router.post("/listarTodos", function (req, res) {
+    usuarioController.listarTodos(req, res);
+});
+
 module.exports = router;

@@ -95,12 +95,6 @@ function newElement(req, res) {
   var concluido = req.body.concluido;
   var fkUsuario = req.body.idUsuario;
 
-  console.log(req.body);
-
-  console.log(descricao);
-  console.log(concluido);
-  console.log(fkUsuario);
-
   if (descricao == undefined) {
     res.status(400).send("Sua descricao está undefined!");
   } else if (concluido == undefined) {
@@ -122,10 +116,23 @@ function newElement(req, res) {
   }
 }
 
+function listarTodos(req, res){
+  var fkUsuario = req.body.idUsuario;
+
+  usuarioModel.listarTodos(fkUsuario).then(function(resultado){
+    res.json(resultado);
+  })
+  .catch(function(erro){
+    console.log(erro);
+    res.status(500).json(erro.sqlMessage);
+  })
+}
+
 module.exports = {
   entrar,
   cadastrar,
   listar,
   testar,
   newElement,
+  listarTodos,
 };
