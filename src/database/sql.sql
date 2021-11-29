@@ -40,14 +40,6 @@ CREATE TABLE usuario (
 	check (sexo = 'F' or sexo = 'M')
 );
 
-CREATE TABLE forum (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-    descricao TEXT,
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
-); 
-
 CREATE TABLE afazer (
 	idTarefa INT PRIMARY KEY AUTO_INCREMENT,
 	descricao TEXT,

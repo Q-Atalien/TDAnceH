@@ -50,11 +50,11 @@ body {
   margin-left: 395px;
 }
 
-.h2p{
+.h2p {
   padding: 10px;
 }
 
-/* teste */
+/* Lista De A Fazeres */
 ul {
   margin: 0;
   padding: 0;
@@ -77,17 +77,17 @@ ul li {
   user-select: none;
 }
 
-/* Set all odd list items to a different color (zebra-stripes) */
+/* Estilização tipo zebra */
 ul li:nth-child(odd) {
   background: #b6c5bc;
 }
 
-/* Darker background-color on hover */
+/* Background-color cor escura com hover*/
 ul li:hover {
   background: #98cead;
 }
 
-/* When clicked on, add a background color and strike out text */
+/* Cor diferente para o check para o check*/
 ul li.checked {
   background: #c8b7c9;
   color: #a3443c;
@@ -108,7 +108,7 @@ ul li.checked::before {
   width: 7px;
 }
 
-/* Style the close button */
+/* estilo para o x de fechar */
 .close {
   position: absolute;
   right: 0;
@@ -121,7 +121,7 @@ ul li.checked::before {
   color: white;
 }
 
-/* Style the header */
+/*header do todo list */
 .header {
   background-color: #8aa4b3;
   padding: 30px 40px;
@@ -136,7 +136,7 @@ ul li.checked::before {
   clear: both;
 }
 
-/* Style the input */
+/* Style do input */
 input {
   margin: 0;
   border: none;
@@ -147,7 +147,7 @@ input {
   font-size: 16px;
 }
 
-/* Style the "Add" button */
+/* Style do "Add" button */
 .addBtn {
   padding: 10px;
   width: 25%;
@@ -204,82 +204,30 @@ input {
   transition: max-height 0.2s ease-out;
 }
 
-/* test */
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: #a3443c; /* Fallback color */
-  background-color: #a3453c71; /* Black w/ opacity */
+/* testando dash */
+.grafic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  width: 100%;
 }
 
-/* Modal Content */
-.modal-content {
-  position: relative;
-  background-color: #b6c5bc;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #a3443c;
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s
+.dash-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
 }
 
-/* Add Animation */
-@-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
-  to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-
-/* The Close Button */
-.close {
-  color: #c8b7c9;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #c8b7c9;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.modal-header {
-  padding: 2px 16px;
-  background-color: #a3443c;
-  color: #c8b7c9;
-}
-
-.modal-body {padding: 2px 16px;}
-
-/* chart js */
 .graph {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   background-color: #eaeaea;
-  display: inline-block;
   width: 45%;
-  height: 250px;
+  height: 35vh;
   margin: 10px;
   padding: 5px;
-}
-
-.dash {
-  margin: auto;
-  text-align: center;
 }

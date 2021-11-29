@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="dashboards.css" />
+    <link
+      rel="icon"
+      type="imagem/png"
+      href="../assets/Img/Icons/Icon_Site-removebg-preview.png"
+    />
     <title>To Do</title>
   </head>
   <body onload="mostreTarefas()">
@@ -16,17 +21,16 @@
 
         <div class="navegacaoLateral">
           <a href="Modalidade.html">Modalidades</a>
-          <a href="Fórum.html">Fórum</a>
           <a href="ToDo.html">To Do</a>
           <a href="Análise De Afazeres.html">Análise De Afazeres</a>
-          <a href="sair">Sair</a>
+          <a href="sair" onclick="limparSessao()">Sair</a>
         </div>
       </div>
 
       <div class="conteudo">
         <div class="container">
           <div id="myDIV" class="header">
-            <h2 style="margin: 5px">My To Do List</h2>
+            <h2 style="margin: 5px">Minha Lista De A Fazeres</h2>
             <input type="text" id="tarefaAdicionada" placeholder="Title..." />
             <span onclick="newElement()" class="addBtn">Add</span>
           </div>
@@ -39,8 +43,10 @@
 </html>
 
 <script>
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
   var idUsuario = sessionStorage.ID_USUARIO;
 
+  // aparece na tela e adiciona o x
   function mostreTarefas() {
     var idUsuario = sessionStorage.ID_USUARIO;
 
@@ -113,7 +119,7 @@
       });
   }
 
-  // Add a "checked" symbol when clicking on a list item
+  // adiciona check
   var list = document.querySelector("ul");
   list.addEventListener("click", function (event) {
     if (event.target.tagName === "LI") {
@@ -140,9 +146,9 @@
     }
   });
 
+  // adiciona um novo a fazer
   function newElement() {
     var inputValue = document.getElementById("tarefaAdicionada").value;
-    var idUsuario = sessionStorage.ID_USUARIO;
 
     fetch("/usuarios/newElement", {
       method: "POST",

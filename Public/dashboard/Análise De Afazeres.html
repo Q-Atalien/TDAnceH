@@ -4,6 +4,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="dashboards.css" />
+    <link
+      rel="icon"
+      type="imagem/png"
+      href="../assets/Img/Icons/Icon_Site-removebg-preview.png"
+    />
     <title>Analise Afazeres</title>
   </head>
   <body>
@@ -15,45 +20,52 @@
 
         <div class="navegacaoLateral">
           <a href="Modalidade.html">Modalidades</a>
-          <a href="Fórum.html">Fórum</a>
+
           <a href="ToDo.html">To Do</a>
           <a href="Análise De Afazeres.html">Análise De Afazeres</a>
-          <a href="sair">Sair</a>
+          <a href="sair" onclick="limparSessao()">Sair</a>
         </div>
       </div>
 
       <div class="conteudo">
-        <div class="container"></div>
-        <canvas id="myChart" style="width: 100%; height: 100%"></canvas>
-        <div class="graph"></div>
+        <div class="container">
+          <div class="grafic">
+            <h1>Analise Das Tarefas</h1>
+            <div class="graph">
+              <canvas id="chartLine" style="width: 100%; height: 100%"></canvas>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
 </html>
 <script>
-  const mixedChart = new Chart(ctx, {
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+  var ctxLine = document.getElementById("chartLine").getContext("2d");
+  var rotulosLine = ["07:00", "10:00", "13:00", "16:00", "19:00", "22:00"];
+  var dataLine = [21, 23, 27, 19, 20, 19];
+  var dataBar = [10, 70, 50, 5, 30, 65];
+  var configLine = {
     data: {
+      labels: rotulosLine,
       datasets: [
         {
-          type: "bar",
-          label: "Bar Dataset",
-          data: [10, 20, 30, 40],
+          type: "line",
+          label: "Temperatura Diária",
+          data: dataLine, // referenciando a variável de dados para o gráfico de linha
         },
         {
-          type: "line",
-          label: "Line Dataset",
-          data: [50, 50, 50, 50],
+          type: "bar",
+          label: "Quantidade Espécies",
+          data: dataBar, // referenciando a variável de dados para o gráfico de barras
         },
       ],
-      labels: ["January", "February", "March", "April"],
     },
-    options: { maintainAspectRatio: false },
-  });
-
-  const config = {
-    type: "scatter",
-    data: data,
     options: {
+      // por padrão, vem como 'true', e faz com que o gráfico se 'mantenha com o mesmo aspecto de proporção', não ficando responsivo
+      maintainAspectRatio: false,
       scales: {
         y: {
           beginAtZero: true,
@@ -61,29 +73,5 @@
       },
     },
   };
-
-  const mixedChart = new Chart(ctx, {
-    type: "bar",
-    data: {
-      datasets: [
-        {
-          label: "Bar Dataset",
-          data: [10, 20, 30, 40],
-          // this dataset is drawn below
-          order: 2,
-        },
-        {
-          label: "Line Dataset",
-          data: [10, 10, 10, 10],
-          type: "line",
-          // this dataset is drawn on top
-          order: 1,
-        },
-      ],
-      labels: ["January", "February", "March", "April"],
-    },
-    options: options,
-  });
-
-  var myChartLine = new Chart(document.getElementById("myChart"), config);
+  var ax_chartLine = new Chart(ctxLine, configLine);
 </script>
