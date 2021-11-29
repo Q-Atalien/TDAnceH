@@ -24,7 +24,7 @@ function limparSessao() {
   // aguardar();
   sessionStorage.clear();
   // finalizarAguardar();
-  window.location = "../login.html";
+  window.location = "../Login.html";
 }
 
 // carregamento (loading)
